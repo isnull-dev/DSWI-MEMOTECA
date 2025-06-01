@@ -145,4 +145,3 @@ A API PHP reside em `http://localhost/memoteca_api/` e possui os seguintes endpo
 
 ---
 
-Feito com ❤️ e um toque de tempero!
