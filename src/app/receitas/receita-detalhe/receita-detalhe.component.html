@@ -1,0 +1,60 @@
+<div class="detalhe-container">
+  <div *ngIf="receita; else naoEncontradaOuErro">
+    <div class="voltar-link">
+      <a routerLink="/receitas" class="btn btn-light">⬅️ Voltar para Lista</a>
+    </div>
+
+    <h2>{{ receita.titulo }}</h2>
+
+    <img
+      *ngIf="receita.imagem_path"
+      [src]="receita.imagem_path.startsWith('http') ? receita.imagem_path : imageBaseUrl + receita.imagem_path"
+      alt="Imagem de {{ receita.titulo }}"
+      class="receita-imagem"
+      onError="this.style.display='none'; console.error('Erro ao carregar imagem nos detalhes:', this.src)"
+    >
+    <img
+      *ngIf="!receita.imagem_path"
+      src="https://via.placeholder.com/800x400.png?text=Sem+Imagem"
+      alt="Sem imagem para {{ receita.titulo }}"
+      class="receita-imagem"
+    >
+    <div class="info-group">
+      <strong>Autor:</strong>
+      <p>{{ receita.autor || 'Não informado' }}</p>
+    </div>
+
+    <div class="info-group">
+      <strong>Data da Memória/Criação:</strong>
+      <p>{{ receita.data_criacao | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+    <div class="info-group">
+      <strong>Ingredientes:</strong>
+      <pre>{{ receita.ingredientes }}</pre>
+    </div>
+
+    <div class="info-group">
+      <strong>Modo de Preparo:</strong>
+      <pre>{{ receita.modo_preparo }}</pre>
+    </div>
+
+    <div *ngIf="receita.historia" class="info-group">
+      <strong>História da Receita:</strong>
+      <p>{{ receita.historia }}</p>
+    </div>
+
+    <div class="actions">
+      <a [routerLink]="['/receitas/editar', receita.id]" class="btn btn-warning">Editar</a>
+      <button (click)="excluirReceita(receita.id)" class="btn btn-danger">Excluir</button>
+    </div>
+
+  </div>
+
+  <ng-template #naoEncontradaOuErro>
+    <div class="alert alert-warning">{{ mensagemErro || 'Carregando detalhes da receita...' }}</div>
+     <div *ngIf="mensagemErro">
+         <a routerLink="/receitas" class="btn btn-light">⬅️ Voltar para Lista</a>
+     </div>
+  </ng-template>
+</div>

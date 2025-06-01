@@ -1,0 +1,28 @@
+/* Você pode adicionar estilos globais aqui, mas é bom manter este arquivo leve */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  padding: 1rem; /* Espaçamento geral para o conteúdo principal */
+  min-height: calc(100vh - 120px); /* Ajuste conforme a altura do seu header e footer */
+}
+
+main {
+  padding-bottom: 60px; /* Espaço para o rodapé fixo ou relativo */
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  /* position: fixed; */ /* Para rodapé fixo */
+  /* bottom: 0; */
+  /* width: 100%; */
+  margin-top: 2rem; /* Se não for fixo, dá um espaço */
+}

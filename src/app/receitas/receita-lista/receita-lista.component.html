@@ -1,0 +1,21 @@
+<div class="lista-container">
+  <div class="lista-header">
+    <h2>Minhas Receitas 📖</h2>
+    <a routerLink="/receitas/nova" class="btn btn-success">Adicionar Nova Receita</a>
+  </div>
+
+  <div *ngIf="mensagem" class="alert alert-info my-3">{{ mensagem }}</div>
+
+  <div *ngIf="receitas.length > 0; else semReceitas" class="receitas-grid">
+    <app-receita-card
+      *ngFor="let receita of receitas"
+      [receita]="receita"
+      (excluir)="excluirReceita($event)">
+    </app-receita-card>
+  </div>
+
+  <ng-template #semReceitas>
+    <div *ngIf="!mensagem" class="text-center my-5"> <p>Nenhuma receita cadastrada ainda.</p>
+    </div>
+  </ng-template>
+</div>

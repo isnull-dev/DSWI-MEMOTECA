@@ -1,0 +1,26 @@
+<div class="card">
+  <img
+    *ngIf="receita.imagem_path"
+    [src]="receita.imagem_path.startsWith('http') ? receita.imagem_path : imageBaseUrl + receita.imagem_path"
+    alt="Imagem de {{ receita.titulo }}"
+    class="card-img-top"
+    onError="this.style.display='none'; console.error('Erro ao carregar imagem no card:', this.src)"
+  >
+  <img
+    *ngIf="!receita.imagem_path"
+    src="https://via.placeholder.com/300x200.png?text=Sem+Imagem"
+    alt="Sem imagem para {{ receita.titulo }}"
+    class="card-img-top"
+  >
+  <div class="card-body">
+    <h5 class="card-title">{{ receita.titulo }}</h5>
+    <p class="card-text"><strong>Autor:</strong> {{ receita.autor || 'Não informado' }}</p>
+    <p class="card-text"><strong>Data:</strong> {{ receita.data_criacao | date:'dd/MM/yyyy' }}</p>
+    <p class="card-text card-description">{{ receita.historia || 'Sem história adicional.' }}</p>
+    <div class="card-actions">
+      <a [routerLink]="['/receitas', receita.id]" class="btn btn-info">Detalhes</a>
+      <a [routerLink]="['/receitas/editar', receita.id]" class="btn btn-warning">Editar</a>
+      <button (click)="confirmarExclusao(receita.id)" class="btn btn-danger">Excluir</button>
+    </div>
+  </div>
+</div>

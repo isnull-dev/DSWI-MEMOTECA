@@ -1,0 +1,68 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Editar Receita' : 'Nova Receita' }}</h2>
+
+  <div *ngIf="mensagemSucesso" class="alert alert-success">
+    {{ mensagemSucesso }}
+  </div>
+  <div *ngIf="mensagemErro" class="alert alert-danger">
+    {{ mensagemErro }}
+  </div>
+
+  <form [formGroup]="receitaForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="titulo">Título da Receita:</label>
+      <input type="text" id="titulo" formControlName="titulo" required>
+      <div *ngIf="receitaForm.get('titulo')?.invalid && (receitaForm.get('titulo')?.dirty || receitaForm.get('titulo')?.touched)" class="error-message">
+        Título é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ingredientes">Ingredientes:</label>
+      <textarea id="ingredientes" formControlName="ingredientes" rows="5" required></textarea>
+      <div *ngIf="receitaForm.get('ingredientes')?.invalid && (receitaForm.get('ingredientes')?.dirty || receitaForm.get('ingredientes')?.touched)" class="error-message">
+        Ingredientes são obrigatórios.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="modo_preparo">Modo de Preparo:</label>
+      <textarea id="modo_preparo" formControlName="modo_preparo" rows="8" required></textarea>
+      <div *ngIf="receitaForm.get('modo_preparo')?.invalid && (receitaForm.get('modo_preparo')?.dirty || receitaForm.get('modo_preparo')?.touched)" class="error-message">
+        Modo de preparo é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="historia">História da Receita (opcional):</label>
+      <textarea id="historia" formControlName="historia" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="autor">Autor (opcional):</label>
+      <input type="text" id="autor" formControlName="autor">
+    </div>
+
+    <div class="form-group">
+      <label for="data_criacao">Data da Criação/Memória:</label>
+      <input type="date" id="data_criacao" formControlName="data_criacao">
+    </div>
+
+    <div class="form-group">
+      <label for="imagemFile">Imagem da Receita (opcional):</label>
+      <input type="file" id="imagemFile" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/gif">
+      <small *ngIf="selectedFile" class="file-name-display">Arquivo selecionado: {{ selectedFile.name }}</small>
+      <div *ngIf="isEditMode && currentImagePath && !selectedFile" class="current-image-preview">
+        <p>Imagem atual:</p>
+        <img [src]="imageBaseUrl + currentImagePath" alt="Imagem atual da receita" style="max-width: 200px; max-height: 200px; margin-top: 10px;">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Salvar Alterações' : 'Criar Receita' }}
+      </button>
+      <a routerLink="/receitas" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
