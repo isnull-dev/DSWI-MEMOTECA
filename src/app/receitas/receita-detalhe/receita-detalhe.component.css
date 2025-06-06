@@ -18,11 +18,10 @@
 .receita-imagem {
   width: 100%;
   max-height: 400px;
-  object-fit: contain; /* ALTERADO DE 'cover' PARA 'contain' */
+  object-fit: contain; 
   border-radius: 8px;
   margin-bottom: 1.5rem;
-  background-color: #f8f9fa; /* Opcional: Cor de fundo para os espaços vazios */
-                               /* Pode ser #fff ou transparent também */
+  background-color: #f8f9fa; 
 }
 
 .info-group {
