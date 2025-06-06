@@ -1,4 +1,4 @@
-# Memoteca de Receitas 🍜✨
+# Memoteca de Receitas - Matheus de Souza Pereira
 
 ## 🌟 Funcionalidades
 
